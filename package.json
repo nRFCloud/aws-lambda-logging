@@ -1,0 +1,92 @@
+{
+  "name": "@nrfcloud/aws-lambda-logging",
+  "version": "0.0.0-development",
+  "description": "AWS lambda logging helper",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "pretest": "npm run prepare",
+    "test": "jest",
+    "test:coverage": "npm run test -- --coverage",
+    "lint": "npm run tslint && npm run prettier:lint",
+    "tslint": "tslint --project ./tsconfig.json",
+    "prettier:lint": "prettier --list-different \"./src/*.ts\" \"./src/**/*.ts\" \"./__tests__/*.ts\" \"./__tests__/**/*.ts\"",
+    "prettier": "prettier --write \"./src/*.ts\" \"./src/**/*.ts\" \"./__tests__/*.ts\" \"./__tests__/**/*.ts\"",
+    "prepare": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nRFCloud/aws-lambda-logging.git"
+  },
+  "keywords": [
+    "nRFCloud",
+    "IoT",
+    "NordicSemiconductor"
+  ],
+  "author": "Nordic Semiconductor ASA | nordicsemi.no",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/nRFCloud/aws-lambda-logging/issues"
+  },
+  "homepage": "https://github.com/nRFCloud/aws-lambda-logging#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^7.2.0",
+    "@commitlint/config-angular": "^7.1.2",
+    "@nrfcloud/tslint-config": "^3.7.0",
+    "@types/jest": "^23.3.9",
+    "@types/node": "^10.12.1",
+    "aws-sdk": "^2.346.0",
+    "husky": "^1.1.1",
+    "jest": "^23.6.0",
+    "prettier": "^1.14.3",
+    "ts-jest": "^23.10.4",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.5"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "coverageReporters": [
+      "html",
+      "lcov"
+    ],
+    "globals": {
+      "ts-jest": {
+        "diagnostics": {
+          "warnOnly": true
+        }
+      }
+    },
+    "testURL": "http://localhost"
+  },
+  "files": [
+    "package-lock.json",
+    "dist",
+    "scripts",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "release": {
+    "branch": "saga"
+  },
+  "engines": {
+    "node": ">=8.0.0",
+    "npm": ">=5.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e",
+      "pre-commit": "npm run lint && npm test"
+    }
+  }
+}

@@ -34,7 +34,7 @@
     "@commitlint/config-angular": "^7.1.2",
     "@nrfcloud/tslint-config": "^3.7.0",
     "@types/jest": "^24.0.0",
-    "@types/node": "^10.12.1",
+    "@types/node": "^11.9.0",
     "aws-sdk": "^2.346.0",
     "husky": "^1.1.1",
     "jest": "^23.6.0",

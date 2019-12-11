@@ -35,7 +35,7 @@
     "@nrfcloud/tslint-config": "^3.7.0",
     "@types/jest": "^24.0.0",
     "@types/node": "^12.0.2",
-    "aws-sdk": "^2.346.0",
+    "aws-sdk": "^2.588.0",
     "husky": "^3.0.1",
     "jest": "^23.6.0",
     "prettier": "^1.14.3",

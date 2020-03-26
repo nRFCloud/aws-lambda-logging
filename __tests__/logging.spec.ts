@@ -21,6 +21,16 @@ describe('Logging', () => {
         JSON.stringify({ level: 'DEFAULT', data: ['foo', 'bar'] }, null, 2),
       );
     });
+    it('is not called because the LOG_LEVEL is set to "ERROR"', () => {
+      process.env.LOG_LEVEL = 'ERROR';
+      // @ts-ignore
+      global.console = {
+        log: jest.fn(),
+      };
+      Logging.log('foo', 'bar');
+      expect(global.console.log).not.toHaveBeenCalled();
+      process.env.LOG_LEVEL = 'DEFAULT';
+    });
   });
   describe('error()', () => {
     it('logs a call as a JSON object', done => {
@@ -92,6 +102,7 @@ describe('Logging', () => {
   });
   describe('debug()', () => {
     it('logs a call as a JSON object', done => {
+      process.env.LOG_LEVEL = 'DEBUG';
       new Logging(
         undefined,
         undefined,
@@ -105,6 +116,7 @@ describe('Logging', () => {
   });
   describe('static debug()', () => {
     it('logs a call as a stringified JSON object', () => {
+      process.env.LOG_LEVEL = 'DEBUG';
       // @ts-ignore
       global.console = {
         info: jest.fn(),

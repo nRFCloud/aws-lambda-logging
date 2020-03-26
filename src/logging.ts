@@ -8,6 +8,7 @@ export class Logging {
   readonly _log: Function;
   readonly _error: Function;
   readonly _debug: Function;
+  readonly logLevel: Level;
 
   constructor(
     log: Function = cloudWatch(console.log),
@@ -17,6 +18,7 @@ export class Logging {
     this._log = log;
     this._error = error;
     this._debug = debug;
+    this.logLevel = (process.env.LOG_LEVEL || Level.DEFAULT) as Level;
   }
 
   static log = (...args: any[]): void => {
@@ -32,10 +34,16 @@ export class Logging {
   };
 
   log = (...args: any[]): void => {
+    if (this.logLevel === Level.ERROR) {
+      return;
+    }
     this._log({ level: Level.DEFAULT, data: args });
   };
 
   debug = (...args: any[]): void => {
+    if (this.logLevel !== Level.DEBUG) {
+      return;
+    }
     this._debug({ level: Level.DEBUG, data: args });
   };
 
